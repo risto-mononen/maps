@@ -72,7 +72,7 @@ public class HelloWorld extends PApplet
 	    map1.zoomAndPanTo(zoomLevel, new Location(32.9f, -117.2f));
 		
 	    // Helsinki
-	    map2 = new UnfoldingMap(this, 420, 50, 350, 500, provider);
+	    map2 = new UnfoldingMap(this, 420, 50, 350, 500, new Google.GoogleTerrainProvider());
 	    map2.zoomAndPanTo(zoomLevel, new Location(60.2f, 24.9f));
 		
 		UnfoldingMap[] maps = {map2, map1};
