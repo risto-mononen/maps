@@ -71,20 +71,19 @@ public class HelloWorld extends PApplet
 	    // 32.9 (latitude) and -117.2 (longitude)
 	    map1.zoomAndPanTo(zoomLevel, new Location(32.9f, -117.2f));
 		
-		UnfoldingMap[] maps = {map1};
+	    // Helsinki
+	    map2 = new UnfoldingMap(this, 420, 50, 350, 500, provider);
+	    map2.zoomAndPanTo(zoomLevel, new Location(60.2f, 24.9f));
+		
+		UnfoldingMap[] maps = {map2, map1};
 		// This line makes the map interactive
 		MapUtils.createDefaultEventDispatcher(this, maps);
-		
-		// TODO: Add code here that creates map2 
-		// Then you'll modify draw() below
-
 	}
 
 	/** Draw the Applet window.  */
 	public void draw() {
-		// So far we only draw map1...
-		// TODO: Add code so that both maps are displayed
 		map1.draw();
+		map2.draw();
 	}
 
 	
