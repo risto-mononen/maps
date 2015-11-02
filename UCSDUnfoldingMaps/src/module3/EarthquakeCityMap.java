@@ -82,6 +82,7 @@ public class EarthquakeCityMap extends PApplet {
 	    	Object magObj = f.getProperty("magnitude");
 	    	float mag = Float.parseFloat(magObj.toString());
 	    	// PointFeatures also have a getLocation method
+	    	markers.add(createMarker(f));
 	    }
 	    
 	    // Here is an example of how to use Processing's color method to generate 
@@ -89,6 +90,10 @@ public class EarthquakeCityMap extends PApplet {
 	    int yellow = color(255, 255, 0);
 	    
 	    //TODO: Add code here as appropriate
+	    for(Marker m:markers) {
+	    	m.setColor(yellow);
+	    }
+	    map.addMarkers(markers);
 	}
 		
 	// A suggested helper method that takes in an earthquake feature and 
@@ -97,7 +102,10 @@ public class EarthquakeCityMap extends PApplet {
 	private SimplePointMarker createMarker(PointFeature feature)
 	{
 		// finish implementing and use this method, if it helps.
-		return new SimplePointMarker(feature.getLocation());
+		SimplePointMarker ret = new SimplePointMarker(feature.getLocation());
+		ret.setRadius(50);
+		ret.setHidden(false);
+		return ret;
 	}
 	
 	public void draw() {
@@ -112,6 +120,5 @@ public class EarthquakeCityMap extends PApplet {
 	private void addKey() 
 	{	
 		// Remember you can use Processing's graphics methods here
-	
 	}
 }
