@@ -64,7 +64,8 @@ public class EarthquakeCityMap extends PApplet {
 		}
 		
 	    map.zoomToLevel(2);
-	    MapUtils.createDefaultEventDispatcher(this, map);	
+	    UnfoldingMap[] maps = {map};
+		MapUtils.createDefaultEventDispatcher(this, maps);	
 			
 	    // The List you will populate with new SimplePointMarkers
 	    List<Marker> markers = new ArrayList<Marker>();
