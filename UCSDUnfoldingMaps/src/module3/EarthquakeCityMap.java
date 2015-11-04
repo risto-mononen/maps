@@ -98,12 +98,7 @@ public class EarthquakeCityMap extends PApplet {
 	private SimplePointMarker createMarker(PointFeature feature)
 	{
 		// finish implementing and use this method, if it helps.
-		SimplePointMarker ret = new SimplePointMarker(feature.getLocation(), feature.getProperties());
-		// Set id
-		ret.setId(feature.getId());
-
-		// Copy properties
-		ret.setProperties(feature.getProperties());
+		SimplePointMarker ret = new SimplePointMarker(feature.getLocation());
 		return ret;
 	}
 	
