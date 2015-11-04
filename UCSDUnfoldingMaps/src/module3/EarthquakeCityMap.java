@@ -90,9 +90,9 @@ public class EarthquakeCityMap extends PApplet {
 	    int yellow = color(255, 255, 0);
 	    
 	    //TODO: Add code here as appropriate
-	    for(Marker m:markers) {
-	    	m.setColor(yellow);
-	    }
+//	    for(Marker m:markers) {
+//	    	m.setColor(yellow);
+//	    }
 	    map.addMarkers(markers);
 	}
 		
@@ -102,9 +102,12 @@ public class EarthquakeCityMap extends PApplet {
 	private SimplePointMarker createMarker(PointFeature feature)
 	{
 		// finish implementing and use this method, if it helps.
-		SimplePointMarker ret = new SimplePointMarker(feature.getLocation());
-		ret.setRadius(50);
-		ret.setHidden(false);
+		SimplePointMarker ret = new SimplePointMarker(feature.getLocation(), feature.getProperties());
+		// Set id
+		ret.setId(feature.getId());
+
+		// Copy properties
+		ret.setProperties(feature.getProperties());
 		return ret;
 	}
 	
