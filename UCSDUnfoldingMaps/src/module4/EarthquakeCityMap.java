@@ -192,17 +192,21 @@ public class EarthquakeCityMap extends PApplet {
 		}
 		
 		// Loop all
-		// TODO: loop only the land quakes
 		// TODO: remove debug print and output the final list in the end
+		int oceanQuake = 0;
 		for(PointFeature quake : earthquakes) {
-			for(Marker country : countries) {
-				if(isInCountry(quake, country)) {
-					String name = country.getStringProperty(pName);
-					int count = country.getIntegerProperty(pCount);
-					country.setProperty(pCount, ++count);
-					System.out.println(name + "\t" + country.getIntegerProperty(pCount));
-					break;
+			if(isLand(quake)) {
+				for(Marker country : countries) {
+					if(isInCountry(quake, country)) {
+						String name = country.getStringProperty(pName);
+						int count = country.getIntegerProperty(pCount);
+						country.setProperty(pCount, ++count);
+						System.out.println(name + "\t" + country.getIntegerProperty(pCount));
+						break;
+					}
 				}
+			} else {
+				oceanQuake++;
 			}
 		}
 	}
