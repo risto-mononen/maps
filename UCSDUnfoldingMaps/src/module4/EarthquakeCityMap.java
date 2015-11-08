@@ -179,7 +179,7 @@ public class EarthquakeCityMap extends PApplet {
 	// the quakes to count how many occurred in that country.
 	// Recall that the country markers have a "name" property, 
 	// And LandQuakeMarkers have a "country" property set.
-	private void printQuakes(List<PointFeature> earthquakes, Collection<Marker> countries) 
+	private void printQuakes(List<PointFeature> quakes, Collection<Marker> countries) 
 	{
 		// Constant property names
 		final String pName = "name";
@@ -192,23 +192,34 @@ public class EarthquakeCityMap extends PApplet {
 		}
 		
 		// Loop all
-		// TODO: remove debug print and output the final list in the end
-		int oceanQuake = 0;
-		for(PointFeature quake : earthquakes) {
+		int oceanQuakes = 0;
+		for(PointFeature quake : quakes) {
 			if(isLand(quake)) {
 				for(Marker country : countries) {
 					if(isInCountry(quake, country)) {
 						String name = country.getStringProperty(pName);
 						int count = country.getIntegerProperty(pCount);
 						country.setProperty(pCount, ++count);
-						System.out.println(name + "\t" + country.getIntegerProperty(pCount));
 						break;
 					}
 				}
 			} else {
-				oceanQuake++;
+				oceanQuakes++;
 			}
 		}
+		
+		// Output the counts
+		System.out.println("\tEarthquake count by country:");
+		for(Marker country : countries) {
+				String name = country.getStringProperty(pName);
+				System.out.println(name + "\t" + country.getIntegerProperty(pCount));
+		}
+		System.out.println();
+		Integer allQuakes = quakes.size();
+		Integer landQuakes = allQuakes - oceanQuakes;
+		System.out.println("Landquakes:\t" + landQuakes);
+		System.out.println("Oceanquakes:\t" + oceanQuakes);
+		System.out.println("Earthquakes:\t" + allQuakes);
 	}
 	
 	
