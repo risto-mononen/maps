@@ -164,8 +164,10 @@ public class EarthquakeCityMap extends PApplet {
 		
 		// IMPLEMENT THIS: loop over all countries to check if location is in any of them
 		
-		// TODO: Implement this method using the helper method isInCountry
-		
+		for(Marker country : countryMarkers) {
+			if(isInCountry(earthquake, country))
+				return true;
+		}
 		// not inside any country
 		return false;
 	}
