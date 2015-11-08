@@ -59,6 +59,8 @@ public class EarthquakeCityMap extends PApplet {
 
 	// A List of country markers
 	private List<Marker> countryMarkers;
+
+	private List<PointFeature> earthquakes;
 	
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
@@ -94,9 +96,9 @@ public class EarthquakeCityMap extends PApplet {
 		for(Feature city : cities) {
 		  cityMarkers.add(new CityMarker(city));
 		}
-	    
+
 		//     STEP 3: read in earthquake RSS feed
-	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
+		earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
 	    quakeMarkers = new ArrayList<Marker>();
 	    
 	    for(PointFeature feature : earthquakes) {
@@ -180,7 +182,30 @@ public class EarthquakeCityMap extends PApplet {
 	// And LandQuakeMarkers have a "country" property set.
 	private void printQuakes() 
 	{
-		// TODO: Implement this method
+		// Constant property names
+		final String pName = "name";
+		final String pCount = "quakeCount";
+
+		// Init new count property
+		for(Marker country : countryMarkers) {
+			String name = country.getStringProperty(pName);
+			country.setProperty(pCount, 0);
+		}
+		
+		// Loop all
+		// TODO: loop only the land quakes
+		// TODO: remove debug print and output the final list in the end
+		for(PointFeature quake : earthquakes) {
+			for(Marker country : countryMarkers) {
+				if(isInCountry(quake, country)) {
+					String name = country.getStringProperty(pName);
+					int count = country.getIntegerProperty(pCount);
+					country.setProperty(pCount, ++count);
+					System.out.println(name + "\t" + country.getIntegerProperty(pCount));
+					break;
+				}
+			}
+		}
 	}
 	
 	
