@@ -1,6 +1,7 @@
 package module4;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
@@ -59,8 +60,6 @@ public class EarthquakeCityMap extends PApplet {
 
 	// A List of country markers
 	private List<Marker> countryMarkers;
-
-	private List<PointFeature> earthquakes;
 	
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
@@ -98,7 +97,7 @@ public class EarthquakeCityMap extends PApplet {
 		}
 
 		//     STEP 3: read in earthquake RSS feed
-		earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
+		List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
 	    quakeMarkers = new ArrayList<Marker>();
 	    
 	    for(PointFeature feature : earthquakes) {
@@ -113,7 +112,7 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 
 	    // could be used for debugging
-	    printQuakes();
+	    printQuakes(earthquakes, countryMarkers);
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -180,14 +179,14 @@ public class EarthquakeCityMap extends PApplet {
 	// the quakes to count how many occurred in that country.
 	// Recall that the country markers have a "name" property, 
 	// And LandQuakeMarkers have a "country" property set.
-	private void printQuakes() 
+	private void printQuakes(List<PointFeature> earthquakes, Collection<Marker> countries) 
 	{
 		// Constant property names
 		final String pName = "name";
 		final String pCount = "quakeCount";
 
 		// Init new count property
-		for(Marker country : countryMarkers) {
+		for(Marker country : countries) {
 			String name = country.getStringProperty(pName);
 			country.setProperty(pCount, 0);
 		}
@@ -196,7 +195,7 @@ public class EarthquakeCityMap extends PApplet {
 		// TODO: loop only the land quakes
 		// TODO: remove debug print and output the final list in the end
 		for(PointFeature quake : earthquakes) {
-			for(Marker country : countryMarkers) {
+			for(Marker country : countries) {
 				if(isInCountry(quake, country)) {
 					String name = country.getStringProperty(pName);
 					int count = country.getIntegerProperty(pCount);
