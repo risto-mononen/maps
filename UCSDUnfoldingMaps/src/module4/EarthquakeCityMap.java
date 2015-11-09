@@ -153,6 +153,9 @@ public class EarthquakeCityMap extends PApplet {
 		text("5.0+ Magnitude", 75, 125);
 		text("4.0+ Magnitude", 75, 175);
 		text("Below 4.0", 75, 225);
+		
+		CityMarker.addCity(g,50,275);
+		CityMarker.addLabel(g,75,275);
 	}
 
 	

@@ -32,7 +32,7 @@
 {"type":"Feature","properties":{"name":"Perth", "population":"2.02", "country" : "Australia", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[115.8589, -31.9522]}},
 {"type":"Feature","properties":{"name":"Mumbai", "population":"12.48", "country" : "India", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[72.8258, 18.9750]}},
 {"type":"Feature","properties":{"name":"Helsinki", "population":"1.11", "country" : "Finland", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[24.9375, 60.1708]}},
-{"type":"Feature","properties":{"name":"Oslo", "population":"0.65", "country" : "Norway", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[10.75, 59.95]}},
+{"type":"Feature","properties":{"name":"Oslo", "population":"0.65", "country" : "Norway", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[10.75, 59.91]}},
 {"type":"Feature","properties":{"name":"Stockholm", "population":"1.37", "country" : "Sweden", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[18.0686, 59.3294]}},
 {"type":"Feature","properties":{"name":"Reykjavik", "population":"0.12", "country" : "Iceland", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[-21.9333, 64.1333]}},
 {"type":"Feature","properties":{"name":"San Diego", "population":"1.38", "country" : "United States", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[-117.1625, 32.7150]}},

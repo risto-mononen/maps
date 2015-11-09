@@ -42,11 +42,7 @@ public class CityMarker extends SimplePointMarker {
 		// Save previous drawing style
 		pg.pushStyle();
 		
-		final int edge = 5;
-		final float left = x - edge/2;
-		final float upper = y - edge/2;
-		pg.fill(100);
-		pg.rect(left, upper, edge, edge);
+		addCity(pg,x,y);
 		
 		// Restore previous drawing style
 		pg.popStyle();
@@ -68,5 +64,19 @@ public class CityMarker extends SimplePointMarker {
 	{
 		return Float.parseFloat(getStringProperty("population"));
 	}
-	
+
+	public static void addCity(PGraphics pg, float x, float y) {
+		final int edge = 8;
+		final float left = x - edge/2;
+		final float upper = y - edge/2;
+		pg.fill(100);
+		pg.rect(left, upper, edge, edge);
+	}
+
+
+	public static void addLabel(PGraphics g, int i, int j) {
+		g.fill(0, 0, 0);
+		g.text("City Marker", i, j);
+	}
+
 }
