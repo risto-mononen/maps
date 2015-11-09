@@ -77,7 +77,7 @@ public class EarthquakeCityMap extends PApplet {
 		
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
-		//earthquakesURL = "test1.atom";
+		earthquakesURL = "test1.atom";
 		//earthquakesURL = "test2.atom";
 		
 		// WHEN TAKING THIS QUIZ: Uncomment the next line
@@ -211,8 +211,11 @@ public class EarthquakeCityMap extends PApplet {
 		// Output the counts
 		System.out.println("\tEarthquake count by country:");
 		for(Marker country : countries) {
-				String name = country.getStringProperty(pName);
-				System.out.println(name + "\t" + country.getIntegerProperty(pCount));
+			Integer count = country.getIntegerProperty(pCount);
+			if(count == 0)
+				continue;
+			String name = country.getStringProperty(pName);
+			System.out.println(name + "\t" + count);
 		}
 		System.out.println();
 		Integer allQuakes = quakes.size();
