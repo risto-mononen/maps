@@ -62,11 +62,9 @@ public class CityMarker extends SimplePointMarker {
 	public static void addCity(PGraphics pg, float x, float y) {
 		// Save previous drawing style
 		pg.pushStyle();
-		final int edge = 8;
-		final float left = x - edge/2;
-		final float upper = y - edge/2;
 		pg.fill(100);
-		pg.rect(left, upper, edge, edge);
+		float x1=x, y1=y-TRI_SIZE, x2=x-TRI_SIZE, y2=y+TRI_SIZE, x3=x+TRI_SIZE, y3=y+TRI_SIZE;
+		pg.triangle(x1, y1, x2, y2, x3, y3);
 		// Restore previous drawing style
 		pg.popStyle();
 	}
