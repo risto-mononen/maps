@@ -39,13 +39,7 @@ public class CityMarker extends SimplePointMarker {
 	 * Implementation of method to draw marker on the map.
 	 */
 	public void draw(PGraphics pg, float x, float y) {
-		// Save previous drawing style
-		pg.pushStyle();
-		
 		addCity(pg,x,y);
-		
-		// Restore previous drawing style
-		pg.popStyle();
 	}
 	
 	/* Local getters for some city properties.  You might not need these 
@@ -66,17 +60,25 @@ public class CityMarker extends SimplePointMarker {
 	}
 
 	public static void addCity(PGraphics pg, float x, float y) {
+		// Save previous drawing style
+		pg.pushStyle();
 		final int edge = 8;
 		final float left = x - edge/2;
 		final float upper = y - edge/2;
 		pg.fill(100);
 		pg.rect(left, upper, edge, edge);
+		// Restore previous drawing style
+		pg.popStyle();
 	}
 
 
-	public static void addLabel(PGraphics g, int i, int j) {
-		g.fill(0, 0, 0);
-		g.text("City Marker", i, j);
+	public static void addLabel(PGraphics pg, int i, int j) {
+		// Save previous drawing style
+		pg.pushStyle();
+		pg.fill(0, 0, 0);
+		pg.text("City Marker", i, j);
+		// Restore previous drawing style
+		pg.popStyle();
 	}
 
 }

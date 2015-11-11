@@ -143,19 +143,9 @@ public class EarthquakeCityMap extends PApplet {
 		text("Earthquake Key", 50, 75);
 		
 		fill(color(255, 0, 0));
-		ellipse(50, 125, 15, 15);
-		fill(color(255, 255, 0));
-		ellipse(50, 175, 10, 10);
-		fill(color(0, 0, 255));
-		ellipse(50, 225, 5, 5);
-		
+		CityMarker.addCity(g,50,125);
 		fill(0, 0, 0);
-		text("5.0+ Magnitude", 75, 125);
-		text("4.0+ Magnitude", 75, 175);
-		text("Below 4.0", 75, 225);
-		
-		CityMarker.addCity(g,50,275);
-		CityMarker.addLabel(g,75,275);
+		CityMarker.addLabel(g,75,125);
 	}
 
 	
