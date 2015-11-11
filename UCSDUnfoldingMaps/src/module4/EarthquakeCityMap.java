@@ -142,14 +142,13 @@ public class EarthquakeCityMap extends PApplet {
 		textSize(12);
 		text("Earthquake Key", 50, 75);
 		
-		fill(color(255, 0, 0));
 		CityMarker.addCity(g, 50, 125);
 		LandQuakeMarker.addShape(g, 50, 150);
 		OceanQuakeMarker.addShape(g, 50, 175);
-		fill(0);
 		text("City", 75, 125);
 		text("Land Quake", 75, 150);
 		text("Ocean Quake", 75, 175);
+		text("Size ~ Magnitude", 50, 200);
 	}
 
 	
