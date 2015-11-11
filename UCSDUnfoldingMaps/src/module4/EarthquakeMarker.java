@@ -21,6 +21,7 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// using the thresholds below, or a continuous function
 	// based on magnitude. 
 	protected float radius;
+	protected static final float DEF_RADIUS = 9;
 	
 	
 	/** Greater than or equal to this threshold is a moderate earthquake */
@@ -38,7 +39,7 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	
 	// abstract method implemented in derived classes
 	public abstract void drawEarthquake(PGraphics pg, float x, float y);
-		
+
 	
 	// constructor
 	public EarthquakeMarker (PointFeature feature) 

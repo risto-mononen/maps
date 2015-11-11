@@ -36,6 +36,13 @@ public class LandQuakeMarker extends EarthquakeMarker {
 	}
 
 
+	public static void addShape(PGraphics pg, int x, int y) {
+		pg.pushStyle();
+		pg.ellipse(x, y, DEF_RADIUS, DEF_RADIUS);
+		pg.popStyle();
+	}
+
+
 
 		
 }

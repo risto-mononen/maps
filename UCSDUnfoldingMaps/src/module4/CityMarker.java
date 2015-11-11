@@ -69,14 +69,4 @@ public class CityMarker extends SimplePointMarker {
 		pg.popStyle();
 	}
 
-
-	public static void addLabel(PGraphics pg, int i, int j) {
-		// Save previous drawing style
-		pg.pushStyle();
-		pg.fill(0, 0, 0);
-		pg.text("City Marker", i, j);
-		// Restore previous drawing style
-		pg.popStyle();
-	}
-
 }
