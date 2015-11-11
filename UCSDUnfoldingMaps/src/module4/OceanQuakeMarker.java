@@ -25,7 +25,13 @@ public class OceanQuakeMarker extends EarthquakeMarker {
 		pg.rect(x, y, radius, radius);
 		pg.popStyle();
 	}
-	
+
+
+	public static void addShape(PGraphics pg, int x, int y) {
+		pg.pushStyle();
+		pg.rect(x-DEF_RADIUS/2, y-DEF_RADIUS/2, DEF_RADIUS, DEF_RADIUS);
+		pg.popStyle();
+	}	
 
 
 	
