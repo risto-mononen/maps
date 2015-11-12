@@ -21,6 +21,13 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// using the thresholds below, or a continuous function
 	// based on magnitude. 
 	protected float radius;
+
+	protected int r;
+
+	protected int g;
+
+	protected int b;
+
 	protected static final float DEF_RADIUS = 9;
 	
 	
@@ -77,7 +84,20 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// But this is up to you, of course.
 	// You might find the getters below helpful.
 	private void colorDetermine(PGraphics pg) {
-		//TODO: Implement this method
+		final Float depth = getDepth();
+		if (depth < THRESHOLD_LIGHT) {
+			r=0xff;
+			g=0xff;
+			b=0x00;
+		} else if (depth < THRESHOLD_INTERMEDIATE) {
+			r=0x00;
+			g=0x00;
+			b=0xff;
+		} else {
+			r=0xff;
+			g=0x00;
+			b=0x00;
+		}
 	}
 	
 	
