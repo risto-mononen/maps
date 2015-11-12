@@ -11,11 +11,17 @@ import processing.core.PGraphics;
  */
 public class OceanQuakeMarker extends EarthquakeMarker {
 	
+	private static OceanQuakeMarker instance;
+
+
+
+
 	public OceanQuakeMarker(PointFeature quake) {
 		super(quake);
 		
 		// setting field in earthquake marker
 		isOnLand = false;
+		instance = this;
 	}
 	
 
@@ -32,5 +38,9 @@ public class OceanQuakeMarker extends EarthquakeMarker {
 
 
 	
+
+	public static OceanQuakeMarker getInstance() {
+		return instance;
+	}
 
 }

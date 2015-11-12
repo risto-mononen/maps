@@ -46,7 +46,6 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	
 	// abstract method implemented in derived classes
 	public abstract void drawEarthquake(PGraphics pg, float x, float y);
-
 	
 	// constructor
 	public EarthquakeMarker (PointFeature feature) 
@@ -67,7 +66,8 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 		pg.pushStyle();
 			
 		// determine color of marker from depth
-		colorDetermine(pg);
+		final Float depth = getDepth();
+		colorDetermine(depth);
 		
 		// call abstract method implemented in child class to draw marker shape
 		drawEarthquake(pg, x, y);
@@ -83,8 +83,7 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// We suggest: Deep = red, intermediate = blue, shallow = yellow
 	// But this is up to you, of course.
 	// You might find the getters below helpful.
-	private void colorDetermine(PGraphics pg) {
-		final Float depth = getDepth();
+	protected void colorDetermine(Float depth) {
 		if (depth < THRESHOLD_LIGHT) {
 			r=0xff;
 			g=0xff;
@@ -126,6 +125,31 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	{
 		return isOnLand;
 	}
+
+
+	public static void addKey(int x1, int x2, int y, int gap, EarthquakeCityMap earthquakeCityMap) {
+		PGraphics pg = earthquakeCityMap.g;
+		LandQuakeMarker quake = LandQuakeMarker.getInstance();
+		quake.radius = DEF_RADIUS;
+
+		quake.colorDetermine(THRESHOLD_LIGHT-1);
+		quake.drawEarthquake(pg, x1, y);
+		pg.fill(0);
+		earthquakeCityMap.text("Shallow", x2, y);
+		
+		y += gap;
+		quake.colorDetermine(THRESHOLD_INTERMEDIATE-1);
+		quake.drawEarthquake(pg, x1, y);
+		pg.fill(0);
+		earthquakeCityMap.text("Intermediate", x2, y);
+		
+		y += gap;
+		quake.colorDetermine(THRESHOLD_DEEP+1);
+		quake.drawEarthquake(pg, x1, y);
+		pg.fill(0);
+		earthquakeCityMap.text("Deep", x2, y);
+	}
 	
 	
 }
+

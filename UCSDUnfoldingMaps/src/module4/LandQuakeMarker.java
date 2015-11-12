@@ -12,6 +12,9 @@ import processing.core.PGraphics;
 public class LandQuakeMarker extends EarthquakeMarker {
 	
 	
+	private static LandQuakeMarker instance;
+
+
 	public LandQuakeMarker(PointFeature quake) {
 		
 		// calling EarthquakeMarker constructor
@@ -19,6 +22,7 @@ public class LandQuakeMarker extends EarthquakeMarker {
 		
 		// setting field in earthquake marker
 		isOnLand = true;
+		instance = this;
 	}
 
 
@@ -37,6 +41,11 @@ public class LandQuakeMarker extends EarthquakeMarker {
 
 	public static void addShape(PGraphics pg, int x, int y) {
 		pg.ellipse(x, y, DEF_RADIUS, DEF_RADIUS);
+	}
+
+
+	public static LandQuakeMarker getInstance() {
+		return instance;
 	}
 
 

@@ -152,6 +152,7 @@ public class EarthquakeCityMap extends PApplet {
 		text("Land Quake", 75, 150);
 		text("Ocean Quake", 75, 175);
 		text("Size ~ Magnitude", 50, 200);
+		EarthquakeMarker.addKey(50, 75, 225, 25, this);
 	}
 
 	
