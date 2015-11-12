@@ -21,16 +21,13 @@ public class OceanQuakeMarker extends EarthquakeMarker {
 
 	@Override
 	public void drawEarthquake(PGraphics pg, float x, float y) {
-		pg.pushStyle();
+		pg.fill(r, g, b);
 		pg.rect(x, y, radius, radius);
-		pg.popStyle();
 	}
 
 
 	public static void addShape(PGraphics pg, int x, int y) {
-		pg.pushStyle();
 		pg.rect(x-DEF_RADIUS/2, y-DEF_RADIUS/2, DEF_RADIUS, DEF_RADIUS);
-		pg.popStyle();
 	}	
 
 

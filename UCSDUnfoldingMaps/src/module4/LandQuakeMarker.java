@@ -24,9 +24,8 @@ public class LandQuakeMarker extends EarthquakeMarker {
 
 	@Override
 	public void drawEarthquake(PGraphics pg, float x, float y) {
-		pg.pushStyle();
+		pg.fill(r, g, b);
 		pg.ellipse(x, y, radius, radius);
-		pg.popStyle();
 	}
 	
 
@@ -37,9 +36,7 @@ public class LandQuakeMarker extends EarthquakeMarker {
 
 
 	public static void addShape(PGraphics pg, int x, int y) {
-		pg.pushStyle();
 		pg.ellipse(x, y, DEF_RADIUS, DEF_RADIUS);
-		pg.popStyle();
 	}
 
 
