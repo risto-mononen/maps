@@ -59,8 +59,10 @@ public class EarthquakeCityMap extends PApplet {
 	private List<Marker> countryMarkers;
 	
 	// NEW IN MODULE 5
-	private CommonMarker lastSelected;
+	private Marker lastSelected;
 	private CommonMarker lastClicked;
+
+	private Marker prev;
 	
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
@@ -146,6 +148,18 @@ public class EarthquakeCityMap extends PApplet {
 	private void selectMarkerIfHover(List<Marker> markers)
 	{
 		// TODO: Implement this method
+		if (lastSelected == null) {
+			for (Marker marker : markers) {
+				if (marker.isInside(map, mouseX, mouseY)) {
+					if (prev != marker) {
+						prev = lastSelected = marker;
+						lastSelected.setSelected(true);
+						System.err.println(lastSelected.getLocation());
+					}
+					break;
+				}
+			}
+		}
 	}
 	
 	/** The event handler for mouse clicks
