@@ -62,8 +62,6 @@ public class EarthquakeCityMap extends PApplet {
 	private Marker lastSelected;
 	private CommonMarker lastClicked;
 
-	private Marker prev;
-	
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
 		size(900, 700, OPENGL);
@@ -151,8 +149,8 @@ public class EarthquakeCityMap extends PApplet {
 		if (lastSelected == null) {
 			for (Marker marker : markers) {
 				if (marker.isInside(map, mouseX, mouseY)) {
-					if (prev != marker) {
-						prev = lastSelected = marker;
+					if (lastSelected != marker) {
+						lastSelected = marker;
 						lastSelected.setSelected(true);
 						System.err.println(lastSelected.getLocation());
 					}
