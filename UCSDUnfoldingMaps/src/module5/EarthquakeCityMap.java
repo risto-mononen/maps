@@ -60,7 +60,7 @@ public class EarthquakeCityMap extends PApplet {
 	
 	// NEW IN MODULE 5
 	private Marker lastSelected;
-	private CommonMarker lastClicked;
+	private Marker lastClicked;
 
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
@@ -152,7 +152,7 @@ public class EarthquakeCityMap extends PApplet {
 					if (lastSelected != marker) {
 						lastSelected = marker;
 						lastSelected.setSelected(true);
-						System.err.println(lastSelected.getLocation());
+						System.err.println("hovered: " + lastSelected.getLocation());
 					}
 					break;
 				}
@@ -168,12 +168,31 @@ public class EarthquakeCityMap extends PApplet {
 	@Override
 	public void mouseClicked()
 	{
-		// TODO: Implement this method
-		// Hint: You probably want a helper method or two to keep this code
-		// from getting too long/disorganized
+		if (lastClicked != null) {
+			lastClicked.setSelected(false);
+			lastClicked = null;
+		
+		}
+		selectMarkerIfClicked(quakeMarkers);
+		selectMarkerIfClicked(cityMarkers);
 	}
 	
 	
+	private void selectMarkerIfClicked(List<Marker> markers) {
+		if (lastClicked == null) {
+			for (Marker marker : markers) {
+				if (marker.isInside(map, mouseX, mouseY)) {
+					if (lastClicked != marker) {
+						lastClicked = marker;
+						lastClicked.setSelected(true);
+						System.err.println("clicked: " + lastClicked.getLocation());
+					}
+					break;
+				}
+			}
+		}		
+	}
+
 	// loop over and unhide all markers
 	private void unhideMarkers() {
 		for(Marker marker : quakeMarkers) {
