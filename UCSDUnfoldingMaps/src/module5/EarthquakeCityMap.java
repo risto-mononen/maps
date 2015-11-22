@@ -168,17 +168,42 @@ public class EarthquakeCityMap extends PApplet {
 	@Override
 	public void mouseClicked()
 	{
+		// De-select earlier click
 		if (lastClicked != null) {
+			unhideMarkers();
 			lastClicked.setSelected(false);
 			lastClicked = null;
-		
+			return;
 		}
-		selectMarkerIfClicked(quakeMarkers);
-		selectMarkerIfClicked(cityMarkers);
+		
+		// Find the earthquake that was clicked, if any
+		EarthquakeMarker quake = (EarthquakeMarker) selectMarkerIfClicked(quakeMarkers);
+		if (quake != null) {
+			hideMarkers(quakeMarkers, quake, 0);
+			quake.setHidden(false);
+			hideMarkers(cityMarkers, quake, quake.threatCircle());
+			return;
+		}
+		
+		// TODO: Find the city that was clicked, if any
+		//selectMarkerIfClicked(cityMarkers);
 	}
 	
 	
-	private void selectMarkerIfClicked(List<Marker> markers) {
+	private void hideMarkers(List<Marker> quakeMarkers2, EarthquakeMarker quake, double radius) {
+		for (Marker marker : quakeMarkers2) {
+			double distance = quake.getDistanceTo(marker.getLocation());
+			System.err.println("visibility:\tquake " + quake.getLocation() + "\tradius " + radius + "\tcity " + marker.getLocation() + "\tdistance: " + distance);
+			if (distance > radius) {
+				marker.setHidden(true);
+			} else {
+				marker.setHidden(false);
+			}
+		}
+	}
+
+
+	private Marker selectMarkerIfClicked(List<Marker> markers) {
 		if (lastClicked == null) {
 			for (Marker marker : markers) {
 				if (marker.isInside(map, mouseX, mouseY)) {
@@ -190,7 +215,8 @@ public class EarthquakeCityMap extends PApplet {
 					break;
 				}
 			}
-		}		
+		}
+		return lastClicked;		
 	}
 
 	// loop over and unhide all markers
