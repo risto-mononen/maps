@@ -56,7 +56,10 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 	
 	public int compareTo(EarthquakeMarker marker)
 	{
-		return Math.round(getMagnitude() - marker.getMagnitude());
+		float a = getMagnitude();
+		float b = marker.getMagnitude();
+		int ret = a < b ? -1 : a == b ? 0 : 1;
+		return ret;
 	}
 	
 	// calls abstract method drawEarthquake and then checks age and draws X if needed
