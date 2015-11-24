@@ -1,7 +1,7 @@
 /**
  * 
  */
-package module6;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.marker.Marker;
+import module6.LandQuakeMarker;
 import parsing.ParseFeed;
 import processing.core.PApplet;
 
@@ -48,7 +49,8 @@ public class LandQuakeMarkerTest {
 		b.setProperty("magnitude", a.getMagnitude() + 2.3);
 		assertTrue(a.compareTo(a) == 0);
 		assertTrue(a.compareTo(b) < 0);
-		assertTrue(b.compareTo(a) < 0);
+		assertTrue(b.compareTo(a) > 0);
+		// test transitivity ;-)
 	}
 
 }
