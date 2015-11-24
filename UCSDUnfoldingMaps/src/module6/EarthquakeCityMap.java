@@ -116,6 +116,7 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 
 	    // could be used for debugging
+	    sortAndPrint(9);
 	    printQuakes();
 	 		
 	    // (3) Add markers to map
@@ -136,9 +137,16 @@ public class EarthquakeCityMap extends PApplet {
 	}
 	
 	
-	// TODO: Add the method:
-	//   private void sortAndPrint(int numToPrint)
-	// and then call that method from setUp
+	private void sortAndPrint(int numToPrint)
+	{
+		Object[] quakes = quakeMarkers.toArray();
+		Arrays.sort(quakes);
+		for(Object m : quakes) {
+			if(numToPrint-- <= 0)
+				break;
+			System.out.println(m);
+		}
+	}
 	
 	/** Event handler that gets called automatically when the 
 	 * mouse moves.
