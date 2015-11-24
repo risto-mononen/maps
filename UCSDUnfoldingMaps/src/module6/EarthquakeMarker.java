@@ -58,7 +58,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 	{
 		float a = getMagnitude();
 		float b = marker.getMagnitude();
-		int ret = a < b ? -1 : a == b ? 0 : 1;
+		int ret = a > b ? -1 : a == b ? 0 : 1;
 		return ret;
 	}
 	
