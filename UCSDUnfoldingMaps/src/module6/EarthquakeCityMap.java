@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.NavigableMap;
+import java.util.TreeSet;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
@@ -142,10 +144,9 @@ public class EarthquakeCityMap extends PApplet {
 	@SuppressWarnings("unchecked")
 	private void sortAndPrint(int numToPrint)
 	{
-		List<EarthquakeMarker> quakes = new ArrayList<EarthquakeMarker>();
+		TreeSet<EarthquakeMarker> quakes = new TreeSet<EarthquakeMarker>();
 		quakes.addAll((Collection<? extends EarthquakeMarker>) quakeMarkers);
-		Collections.sort(quakes, Collections.reverseOrder());
-		for(Object m : quakes) {
+		for(Object m : quakes.descendingSet()) {
 			if(numToPrint-- <= 0)
 				break;
 			System.out.println(m);
