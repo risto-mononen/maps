@@ -142,11 +142,9 @@ public class EarthquakeCityMap extends PApplet {
 	@SuppressWarnings("unchecked")
 	private void sortAndPrint(int numToPrint)
 	{
-//		List<EarthquakeMarker> quakes = new ArrayList<EarthquakeMarker>();
-//		quakes.addAll((Collection<? extends EarthquakeMarker>) quakeMarkers);
-//		Collections.sort(quakes);
-		Object[] quakes = quakeMarkers.toArray();
-		Arrays.sort(quakes);
+		List<EarthquakeMarker> quakes = new ArrayList<EarthquakeMarker>();
+		quakes.addAll((Collection<? extends EarthquakeMarker>) quakeMarkers);
+		Collections.sort(quakes, Collections.reverseOrder());
 		for(Object m : quakes) {
 			if(numToPrint-- <= 0)
 				break;
