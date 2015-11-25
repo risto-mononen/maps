@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeSet;
@@ -144,9 +145,8 @@ public class EarthquakeCityMap extends PApplet {
 	@SuppressWarnings("unchecked")
 	private void sortAndPrint(int numToPrint)
 	{
-		TreeSet<EarthquakeMarker> quakes = new TreeSet<EarthquakeMarker>();
-		quakes.addAll((Collection<? extends EarthquakeMarker>) quakeMarkers);
-		for(Object m : quakes.descendingSet()) {
+		TreeSet<EarthquakeMarker> quakes = new TreeSet<EarthquakeMarker>((Collection<? extends EarthquakeMarker>) quakeMarkers);
+		for(EarthquakeMarker m : quakes.descendingSet()) {
 			if(numToPrint-- <= 0)
 				break;
 			System.out.println(m);
