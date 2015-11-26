@@ -5,20 +5,18 @@ import java.util.Set;
 
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.data.ShapeFeature;
-import de.fhpotsdam.unfolding.geo.Location;
 
-public class Airport extends PointFeature implements Comparable<Airport> {
-
-	private String id;
+public class Airport implements Comparable<Airport> {
+	PointFeature feature;
 
 	@Override
 	public String toString() {
-		return "Airport [routes=" + routes.size() + ", Id=" + id + "]";
+		return String.format("Airport %s, %s [routes=%d, Id=%s]", feature.getProperty("name"), 
+				feature.getProperty("city"), routes.size(), feature.getId());
 	}
 
 	public Airport(PointFeature feature) {
-		super(feature.location);
-		id = feature.getId();
+		this.feature = feature;
 		routes = new HashSet<ShapeFeature>();
 	}
 
