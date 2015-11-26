@@ -33,6 +33,7 @@ public class AirportMap extends PApplet {
 	private List<Marker> airportList;
 	List<Marker> routeList;
 	private Iterator<Airport> airportIterator;
+	private static int n = 0;
 	
 	public void setup() {
 		// setting up PAppler
@@ -81,7 +82,9 @@ public class AirportMap extends PApplet {
 		}
 		
 		// Prepare for mouse clicks
-		airportIterator = airports.values().iterator();
+		SortedSet<Airport> a = new TreeSet<Airport>(Comparator.reverseOrder());
+		a.addAll(airports.values());
+		airportIterator = a.iterator();
 	}
 	
 	@Override
@@ -91,7 +94,7 @@ public class AirportMap extends PApplet {
 			airport = airportIterator.next();
 			airportList.add(airport.getMarker());
 		}
-		System.out.println(airport);
+		System.out.println(String.format("%d. %s", ++n, airport));
 		map.addMarkers(airportList);
 	}
 
